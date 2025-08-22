@@ -1,5 +1,4 @@
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
@@ -71,7 +70,7 @@ public class Main {
             soma += valor.getValue();
         }
 
-        System.out.printf("\nA média Geral da Turma é: %.2f%n" ,(soma/notasFinais.size()));
+        System.out.printf("\nA média Geral da Turma é: %.2f%n", (soma/notasFinais.size()));
     }
 
     public static void exportarRelatorioCSV(){
@@ -89,7 +88,7 @@ public class Main {
             for (Map.Entry<String, Double> valor : valores){
                 write.println(valor.getKey()+","+valor.getValue());
             }
-            System.out.println("Arquivo EXportado com Sucesso!");
+            System.out.println("Arquivo Exportado com Sucesso!");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -98,12 +97,7 @@ public class Main {
     public static List<Map.Entry<String, Double>> relatorioDescresente(){
         List<Map.Entry<String , Double>> valores = new ArrayList<>(notasFinais.entrySet());
 
-        Collections.sort(valores, new Comparator<Map.Entry<String, Double>>() {
-            @Override
-            public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
-                return o1.getValue().compareTo(o2.getValue());
-            }
-        });
+        valores.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
         return valores;
     }
 }
